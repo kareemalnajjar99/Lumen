@@ -2,7 +2,7 @@
 
 using namespace metal;
 
-static const float tau = 6.28318530718;
+constant float tau = 6.28318530718;
 
 static float3 spectrum(float phase) {
     return 0.5 + 0.5 * cos(tau * (phase + float3(0.0, 0.33, 0.67)));
