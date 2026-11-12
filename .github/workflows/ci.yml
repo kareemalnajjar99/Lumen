@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Test on macOS
+        run: xcodebuild test -scheme Lumen -destination 'platform=macOS'
+
+      - name: Build for iOS
+        run: xcodebuild build -scheme Lumen -destination 'generic/platform=iOS Simulator'
