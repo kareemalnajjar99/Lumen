@@ -2,6 +2,10 @@
 
 Metal-powered effects for SwiftUI. Each effect is a single view modifier backed by a GPU shader.
 
+<p align="center">
+  <img src=".github/media/holographic.webp" width="480" alt="A card with a holographic foil that shifts as the card is dragged and tilted">
+</p>
+
 > Early development. The API will change before 1.0.
 
 ## Effects
