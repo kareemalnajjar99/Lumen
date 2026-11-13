@@ -20,7 +20,7 @@ Metal-powered effects for SwiftUI. Each effect is a single view modifier backed 
 
 ## Usage
 
-Add a foil that the user tilts by dragging:
+Add a foil that follows the user's drag and the tilt of the device:
 
 ```swift
 import Lumen
@@ -34,7 +34,7 @@ struct MembershipCard: View {
 }
 ```
 
-Pick a style, or drive the light yourself:
+Pick a style, choose what the foil follows with `.holographic(follows: .deviceMotion)`, or drive the light yourself:
 
 ```swift
 struct MembershipCard: View {
@@ -72,6 +72,10 @@ if isUnlocked {
 ```
 
 Use `.liquid(from: .top)` to pick the edge. The surface reads best with an animation of about a second.
+
+## Accessibility
+
+Lumen follows the system's Reduce Motion setting. The holographic foil stops leaning the view and ignores device motion, ripples leave the view still, and the liquid transition becomes a cross-fade.
 
 ## Installation
 

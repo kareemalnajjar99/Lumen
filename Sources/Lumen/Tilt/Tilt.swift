@@ -4,11 +4,16 @@ import SwiftUI
 ///
 /// A positive `x` leans toward the trailing edge and a positive `y` toward the bottom edge.
 public struct Tilt: Equatable, Sendable {
+    /// Lean toward the trailing edge when positive, the leading edge when negative.
     public var x: Double
+
+    /// Lean toward the bottom edge when positive, the top edge when negative.
     public var y: Double
 
+    /// A surface that faces the viewer head-on.
     public static let neutral = Tilt(x: 0, y: 0)
 
+    /// Creates a tilt, clamping each axis to -1...1.
     public init(x: Double, y: Double) {
         self.x = x.clamped(to: -1...1)
         self.y = y.clamped(to: -1...1)

@@ -15,6 +15,7 @@ public struct RippleStyle: Equatable, Sendable {
     /// Brightness added on crests, from 0 to 1.
     public var highlight: Double
 
+    /// Creates a style, clamping each value to its valid range.
     public init(
         amplitude: Double = 9,
         wavelength: Double = 64,
@@ -31,7 +32,12 @@ public struct RippleStyle: Equatable, Sendable {
 }
 
 extension RippleStyle {
+    /// A gentle wave, like a drop landing in water.
     public static let water = RippleStyle()
+
+    /// A small, quick wave that barely disturbs the content.
     public static let subtle = RippleStyle(amplitude: 4, wavelength: 44, speed: 520, lifetime: 1.2, highlight: 0.03)
+
+    /// A wide, fast wave with a bright crest.
     public static let shockwave = RippleStyle(amplitude: 14, wavelength: 110, speed: 800, lifetime: 1.3, highlight: 0.18)
 }

@@ -20,3 +20,6 @@ jobs:
 
       - name: Build for iOS
         run: xcodebuild build -scheme Lumen -destination 'generic/platform=iOS Simulator'
+
+      - name: Build documentation
+        run: xcodebuild docbuild -scheme Lumen -destination 'generic/platform=iOS Simulator' OTHER_DOCC_FLAGS=--warnings-as-errors
