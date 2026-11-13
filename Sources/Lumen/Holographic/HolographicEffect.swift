@@ -24,12 +24,29 @@ struct HolographicEffect: ViewModifier, Animatable {
 
 struct InteractiveHolographicEffect: ViewModifier {
     var style: HolographicStyle
+    var sources: TiltSource
 
-    @State private var tilt = Tilt.neutral
+    @State private var drag = Tilt.neutral
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    private var followsDevice: Bool {
+        sources.contains(.deviceMotion) && !reduceMotion
+    }
 
     func body(content: Content) -> some View {
-        content
-            .holographic(tilt: tilt, style: style)
-            .tiltable($tilt)
+        let device = followsDevice ? DeviceTilt.shared.tilt : .neutral
+        let foil = content.holographic(tilt: drag.adding(device), style: style)
+
+        Group {
+            if sources.contains(.drag) {
+                foil.tiltable($drag)
+            } else {
+                foil
+            }
+        }
+        .task(id: followsDevice) {
+            guard followsDevice else { return }
+            await DeviceTilt.shared.follow()
+        }
     }
 }

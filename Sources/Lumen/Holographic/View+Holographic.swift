@@ -6,9 +6,11 @@ extension View {
         modifier(HolographicEffect(tilt: tilt, style: style))
     }
 
-    /// Lays a holographic foil over this view that the user tilts by dragging.
-    public func holographic(style: HolographicStyle = .foil) -> some View {
-        modifier(InteractiveHolographicEffect(style: style))
+    /// Lays a holographic foil over this view that follows the user's drag and the device's tilt.
+    ///
+    /// Dragging also leans the view in 3D. With Reduce Motion on, the view stays flat and ignores device motion.
+    public func holographic(style: HolographicStyle = .foil, follows sources: TiltSource = .all) -> some View {
+        modifier(InteractiveHolographicEffect(style: style, sources: sources))
     }
 }
 

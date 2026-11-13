@@ -34,6 +34,18 @@ struct TiltTests {
     }
 
     @Test
+    func addingTiltsCombinesAndClampsThem() {
+        #expect(Tilt(x: 0.75, y: -0.5).adding(Tilt(x: 0.75, y: 0.25)) == Tilt(x: 1, y: -0.25))
+    }
+
+    @Test
+    func everySourceCoversDragAndDeviceMotion() {
+        #expect(TiltSource.all.contains(.drag))
+        #expect(TiltSource.all.contains(.deviceMotion))
+        #expect(!TiltSource.drag.contains(.deviceMotion))
+    }
+
+    @Test
     func animatableDataRoundTrips() {
         var tilt = Tilt.neutral
         tilt.animatableData = Tilt(x: 0.25, y: -0.5).animatableData
