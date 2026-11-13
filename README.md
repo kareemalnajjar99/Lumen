@@ -8,8 +8,6 @@ Metal-powered effects for SwiftUI. Each effect is a single view modifier backed 
   <img src=".github/media/liquid.webp" width="32%" alt="A card that drains away and pours back in behind a wavy liquid surface">
 </p>
 
-> Early development. The API will change before 1.0.
-
 ## Effects
 
 | Effect | Modifier | Status |
@@ -82,7 +80,7 @@ Lumen follows the system's Reduce Motion setting. The holographic foil stops lea
 In Xcode, choose **File > Add Package Dependencies** and enter the repository URL, or add it to `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/kareemalnajjar99/Lumen.git", branch: "main")
+.package(url: "https://github.com/kareemalnajjar99/Lumen.git", from: "1.0.0")
 ```
 
 ## Requirements
