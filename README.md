@@ -13,8 +13,8 @@ Metal-powered effects for SwiftUI. Each effect is a single view modifier backed 
 | Effect | Modifier | Status |
 | --- | --- | --- |
 | Holographic foil | `.holographic()` | Available |
+| Touch ripples | `.ripple()` | Available |
 | Liquid transitions | | Planned |
-| Touch ripples | | Planned |
 
 ## Usage
 
@@ -47,6 +47,18 @@ struct MembershipCard: View {
 ```
 
 `Tilt` is animatable, so the foil follows any SwiftUI animation you apply to it.
+
+Send a ripple from wherever the user taps, or trigger one yourself:
+
+```swift
+PhotoView()
+    .ripple()
+
+PhotoView()
+    .ripple(at: origin, trigger: likeCount, style: .shockwave)
+```
+
+Waves overlap, so quick taps build on each other instead of restarting.
 
 ## Installation
 
