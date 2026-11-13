@@ -13,21 +13,7 @@ extension View {
 }
 
 #Preview("Ripple") {
-    VStack(alignment: .leading) {
-        Text("Lumen")
-            .font(.title2.bold())
-        Spacer()
-        Text("Tap anywhere")
-            .font(.footnote)
-            .opacity(0.7)
-    }
-    .foregroundStyle(.white)
-    .padding(24)
-    .frame(width: 320, height: 200, alignment: .leading)
-    .background(
-        .linearGradient(colors: [.blue, .indigo], startPoint: .topLeading, endPoint: .bottomTrailing),
-        in: .rect(cornerRadius: 28)
-    )
-    .ripple()
-    .padding(60)
+    SampleCard(caption: "Tap anywhere", colors: [.blue, .indigo])
+        .ripple()
+        .padding(60)
 }

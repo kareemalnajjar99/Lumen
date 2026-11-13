@@ -13,21 +13,7 @@ extension View {
 }
 
 #Preview("Holographic") {
-    VStack(alignment: .leading) {
-        Text("Lumen")
-            .font(.title2.bold())
-        Spacer()
-        Text("Drag to tilt")
-            .font(.footnote)
-            .opacity(0.7)
-    }
-    .foregroundStyle(.white)
-    .padding(24)
-    .frame(width: 320, height: 200, alignment: .leading)
-    .background(
-        .linearGradient(colors: [.indigo, .black], startPoint: .topLeading, endPoint: .bottomTrailing),
-        in: .rect(cornerRadius: 28)
-    )
-    .holographic()
-    .padding(60)
+    SampleCard(caption: "Drag to tilt", colors: [.indigo, .black])
+        .holographic()
+        .padding(60)
 }
