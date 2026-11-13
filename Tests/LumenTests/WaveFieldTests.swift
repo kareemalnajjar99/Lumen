@@ -27,6 +27,14 @@ struct WaveFieldTests {
     }
 
     @Test
+    func insetShiftsOriginsButNotAges() {
+        var field = WaveField()
+        field.add(at: CGPoint(x: 10, y: 20), start: start)
+
+        #expect(field.encoded(at: start.addingTimeInterval(1), inset: 5) == [15, 25, 1])
+    }
+
+    @Test
     func tracksTheNewestWave() {
         var field = WaveField()
         field.add(at: .zero, start: start)

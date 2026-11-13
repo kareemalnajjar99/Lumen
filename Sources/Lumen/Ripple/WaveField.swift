@@ -24,10 +24,14 @@ struct WaveField: Equatable, Sendable {
         waves.removeAll()
     }
 
-    /// Every wave as `x, y, age`, the layout the ripple shader reads.
-    func encoded(at date: Date) -> [Float] {
+    /// Every wave as `x, y, age`, the layout the ripple shader reads, with origins shifted by `inset`.
+    func encoded(at date: Date, inset: Double = 0) -> [Float] {
         waves.flatMap { wave in
-            [Float(wave.origin.x), Float(wave.origin.y), Float(date.timeIntervalSince(wave.start))]
+            [
+                Float(wave.origin.x + inset),
+                Float(wave.origin.y + inset),
+                Float(date.timeIntervalSince(wave.start)),
+            ]
         }
     }
 }

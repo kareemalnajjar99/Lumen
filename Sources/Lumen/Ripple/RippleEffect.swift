@@ -8,18 +8,21 @@ struct WaveRenderer: ViewModifier {
         let reach = style.amplitude * Double(field.count)
 
         TimelineView(.animation(paused: field.isEmpty)) { timeline in
-            content.layerEffect(
-                ShaderLibrary.lumen.ripple(
-                    .floatArray(field.encoded(at: timeline.date)),
-                    .float(style.amplitude),
-                    .float(style.wavelength),
-                    .float(style.speed),
-                    .float(style.lifetime),
-                    .float(style.highlight)
-                ),
-                maxSampleOffset: CGSize(width: reach, height: reach),
-                isEnabled: !field.isEmpty
-            )
+            content
+                .padding(reach)
+                .layerEffect(
+                    ShaderLibrary.lumen.ripple(
+                        .floatArray(field.encoded(at: timeline.date, inset: reach)),
+                        .float(style.amplitude),
+                        .float(style.wavelength),
+                        .float(style.speed),
+                        .float(style.lifetime),
+                        .float(style.highlight)
+                    ),
+                    maxSampleOffset: CGSize(width: reach, height: reach),
+                    isEnabled: !field.isEmpty
+                )
+                .padding(-reach)
         }
         .task(id: field.latestStart) {
             guard !field.isEmpty else { return }
