@@ -3,8 +3,9 @@
 Metal-powered effects for SwiftUI. Each effect is a single view modifier backed by a GPU shader.
 
 <p align="center">
-  <img src=".github/media/holographic.webp" width="49%" alt="A card with a holographic foil that shifts as the card is dragged and tilted">
-  <img src=".github/media/ripple.webp" width="49%" alt="A card that ripples outward from each tap, with overlapping waves">
+  <img src=".github/media/holographic.webp" width="32%" alt="A card with a holographic foil that shifts as the card is dragged and tilted">
+  <img src=".github/media/ripple.webp" width="32%" alt="A card that ripples outward from each tap, with overlapping waves">
+  <img src=".github/media/liquid.webp" width="32%" alt="A card that drains away and pours back in behind a wavy liquid surface">
 </p>
 
 > Early development. The API will change before 1.0.
