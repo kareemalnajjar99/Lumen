@@ -15,7 +15,7 @@ Metal-powered effects for SwiftUI. Each effect is a single view modifier backed 
 | --- | --- | --- |
 | Holographic foil | `.holographic()` | Available |
 | Touch ripples | `.ripple()` | Available |
-| Liquid transitions | | Planned |
+| Liquid transition | `.transition(.liquid)` | Available |
 
 ## Usage
 
@@ -60,6 +60,17 @@ PhotoView()
 ```
 
 Waves overlap, so quick taps build on each other instead of restarting.
+
+Pour a view in and drain it out with a liquid surface:
+
+```swift
+if isUnlocked {
+    RewardCard()
+        .transition(.liquid)
+}
+```
+
+Use `.liquid(from: .top)` to pick the edge. The surface reads best with an animation of about a second.
 
 ## Installation
 
