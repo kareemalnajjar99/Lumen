@@ -1,9 +1,13 @@
 import SwiftUI
 
 /// A transition that pours a view in from one edge and drains it back out.
+///
+/// With Reduce Motion on, the view cross-fades instead.
 public struct LiquidTransition: Transition {
+    /// The edge the liquid enters from.
     public var edge: Edge
 
+    /// Creates a transition whose liquid enters from `edge`.
     public init(edge: Edge = .bottom) {
         self.edge = edge
     }

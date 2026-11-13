@@ -4,10 +4,13 @@ struct WaveRenderer: ViewModifier {
     @Binding var field: WaveField
     var style: RippleStyle
 
-    func body(content: Content) -> some View {
-        let reach = style.amplitude * Double(field.count)
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-        TimelineView(.animation(paused: field.isEmpty)) { timeline in
+    func body(content: Content) -> some View {
+        let isActive = !field.isEmpty && !reduceMotion
+        let reach = isActive ? style.amplitude * Double(field.count) : 0
+
+        TimelineView(.animation(paused: !isActive)) { timeline in
             content
                 .padding(reach)
                 .layerEffect(
@@ -20,7 +23,7 @@ struct WaveRenderer: ViewModifier {
                         .float(style.highlight)
                     ),
                     maxSampleOffset: CGSize(width: reach, height: reach),
-                    isEnabled: !field.isEmpty
+                    isEnabled: isActive
                 )
                 .padding(-reach)
         }
