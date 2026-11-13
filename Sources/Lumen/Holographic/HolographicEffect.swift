@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HolographicEffect: ViewModifier, Animatable {
     var tilt: Tilt
+    var offset = Tilt.neutral
     var style: HolographicStyle
 
     nonisolated var animatableData: Tilt.AnimatableData {
@@ -10,10 +11,12 @@ struct HolographicEffect: ViewModifier, Animatable {
     }
 
     func body(content: Content) -> some View {
+        let light = tilt.adding(offset)
+
         content.colorEffect(
             ShaderLibrary.lumen.holographic(
                 .boundingRect,
-                .float2(tilt.x, tilt.y),
+                .float2(light.x, light.y),
                 .float(style.intensity),
                 .float(style.bands),
                 .float(style.sparkle)
@@ -35,7 +38,7 @@ struct InteractiveHolographicEffect: ViewModifier {
 
     func body(content: Content) -> some View {
         let device = followsDevice ? DeviceTilt.shared.tilt : .neutral
-        let foil = content.holographic(tilt: drag.adding(device), style: style)
+        let foil = content.modifier(HolographicEffect(tilt: drag, offset: device, style: style))
 
         Group {
             if sources.contains(.drag) {

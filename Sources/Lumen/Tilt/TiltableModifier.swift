@@ -11,6 +11,10 @@ struct TiltableModifier: ViewModifier {
         reduceMotion ? .zero : maxAngle
     }
 
+    private var follow: Animation {
+        reduceMotion ? .easeOut(duration: 0.15) : .interactiveSpring(duration: 0.3)
+    }
+
     private var release: Animation {
         reduceMotion ? .easeOut(duration: 0.25) : .spring(duration: 0.6, bounce: 0.35)
     }
@@ -25,7 +29,11 @@ struct TiltableModifier: ViewModifier {
 
     private var drag: some Gesture {
         DragGesture(minimumDistance: 0)
-            .onChanged { tilt = Tilt(toward: $0.location, in: size) }
+            .onChanged { value in
+                withAnimation(follow) {
+                    tilt = Tilt(toward: value.location, in: size)
+                }
+            }
             .onEnded { _ in
                 withAnimation(release) {
                     tilt = .neutral
