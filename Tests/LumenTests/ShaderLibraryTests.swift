@@ -6,11 +6,11 @@ import Testing
 
 @Suite
 struct ShaderLibraryTests {
-    @Test(.enabled(if: MTLCreateSystemDefaultDevice() != nil))
-    func compiledLibraryExposesEveryShader() throws {
+    @Test(.enabled(if: MTLCreateSystemDefaultDevice() != nil), arguments: ["holographic", "ripple"])
+    func compiledLibraryExposes(shader: String) throws {
         let device = try #require(MTLCreateSystemDefaultDevice())
         let library = try device.makeDefaultLibrary(bundle: .module)
 
-        #expect(library.functionNames.contains("holographic"))
+        #expect(library.functionNames.contains(shader))
     }
 }
